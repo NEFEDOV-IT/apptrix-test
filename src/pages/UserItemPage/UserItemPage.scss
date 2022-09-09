@@ -1,0 +1,30 @@
+.user {
+  padding-top: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  & h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  & .user-name {
+    margin-bottom: 5px;
+  }
+
+  & .user-email {
+    margin-bottom: 5px;
+  }
+
+  & .user-type {
+    margin-bottom: 10px;
+  }
+
+  & a {
+    font-size: 14px;
+    display: inline-block;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: #A1A1AA;
+  }
+}

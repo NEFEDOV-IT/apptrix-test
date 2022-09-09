@@ -21,6 +21,7 @@ const Navigation: FC = () => {
         <h3 className={'navigation-title'}>Apptrix test</h3>
         <span>
           <Link onClick={HandleClick} className={'navigation-link'} to={'/'}>{loggedName}</Link>
+          <Link className={'navigation-link'} to={'/users'}>USERS</Link>
         </span>
       </nav>
     </div>

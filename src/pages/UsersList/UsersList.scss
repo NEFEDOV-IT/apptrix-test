@@ -1,0 +1,32 @@
+.users {
+  & ul {
+    padding-top: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+
+    & li {
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 3px #fff;
+      padding: 10px;
+      border: 1px solid #A1A1AA;
+      margin-bottom: 10px;
+
+      & .users__button {
+        align-self: flex-end;
+
+        & a {
+          font-size: 14px;
+          display: inline-block;
+          color: #fff;
+          padding: 5px 10px;
+          background-color: #A1A1AA;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

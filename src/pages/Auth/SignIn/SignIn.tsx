@@ -1,13 +1,23 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import {TextField} from "./TextField";
 import './SignIn.scss'
-import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {ILogged} from "../../../types/types";
 import {fetchToken} from "../../../acynsActions";
 
 export const SignIn: FC = () => {
+  const navigate = useNavigate()
   const dispatch: any = useDispatch()
+  const logged = useSelector((state: ILogged) => state.authReducer.isLogged)
+
+  useEffect(() => {
+    if (logged) {
+      navigate('/users')
+    }
+  })
 
   const validate = Yup.object({
     username: Yup.string()
