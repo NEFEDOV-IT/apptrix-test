@@ -1,9 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {getTokenStorage} from "../../storage";
+import {TOKEN} from "../../utils";
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isLogged: false,
+    isLogged: !!getTokenStorage(TOKEN.ACCESS_TOKEN) || false,
   },
   reducers: {
     register(state) {

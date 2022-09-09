@@ -1,6 +1,7 @@
 import {getTokenStorage, saveTokenStorage} from "./storage";
 import {logOut, register, registerFail} from "./store/auth.slice/auth.slice";
 import {TOKEN, URL} from "./utils";
+import {addUsers} from "./store/users.slice/users.slice";
 
 function authHeader() {
   const user = JSON.parse(getTokenStorage(TOKEN.ACCESS_TOKEN));
@@ -70,5 +71,23 @@ function refreshToken(token) {
         console.log(e.message)
         return dispatch(logOut())
       })
+  }
+}
+
+export const fetchUsers = () => {
+  return dispatch => {
+    fetch(URL.YOUTRACK + '?fields=id,login,name,email', {
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${TOKEN.YOUTRACK}`
+      },
+    })
+      .then(response => response.json())
+      .then(response => {
+        dispatch(addUsers(response))
+      })
+      .catch(e => console.log(e.message))
   }
 }

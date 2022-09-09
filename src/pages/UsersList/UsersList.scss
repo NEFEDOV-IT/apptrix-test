@@ -1,7 +1,20 @@
 .users {
+  display: flex;
+  justify-content: center;
+  & .users__button-not-logged {
+    margin-top: 100px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    @media screen and (min-width: 991.98px) {
+      &:hover {
+        background-color: #A1A1AA;
+      }
+    }
+  }
   & ul {
     padding-top: 10px;
-    max-width: 700px;
+    width: 700px;
     margin: 0 auto;
 
     & li {

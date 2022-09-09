@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react';
 import './UsersList.scss'
-import {TOKEN, URL} from '../../utils'
 import {Link, useNavigate} from "react-router-dom";
 import {ILogged, IUsers} from "../../types/types";
 import {useDispatch, useSelector} from "react-redux";
-import {addUsers} from "../../store/users.slice/users.slice";
+import {fetchUsers} from "../../acynsActions";
 
 interface IUsersReducer {
   usersReducer: IUsers[]
@@ -12,24 +11,12 @@ interface IUsersReducer {
 
 const UsersList = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch: any = useDispatch()
   const users = useSelector((state: IUsersReducer) => state.usersReducer)
   const logged = useSelector((state: ILogged) => state.authReducer.isLogged)
 
   useEffect(() => {
-    fetch(URL.YOUTRACK + '?fields=id,login,name,email', {
-      method: 'GET',
-      headers: {
-        'Cache-Control': 'no-cache',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${TOKEN.YOUTRACK}`
-      },
-    })
-      .then(response => response.json())
-      .then(response => {
-        dispatch(addUsers(response))
-      })
-      .catch(e => console.log(e.message))
+    dispatch(fetchUsers())
   }, [dispatch])
 
   return (
@@ -57,7 +44,12 @@ const UsersList = () => {
               </li>
             })}
           </ul>
-          : <button onClick={() => navigate('/')}>Sign in now</button>
+          : <button
+              onClick={() => navigate('/')}
+              className={'users__button-not-logged'}
+            >
+              Sign in now
+            </button>
         }
       </div>
     </div>
