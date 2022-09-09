@@ -1,0 +1,44 @@
+@import "reset";
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'sans-serif';
+  color: #fff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header {
+  background-color: #000;
+}
+
+main {
+  flex: 1 1 auto;
+  background-color: #27272A;
+}
+
+footer {
+  background-color: #27272A;
+  color: #fff;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  @media screen and (max-width: 1149.98px) {
+    padding: 0 10px;
+  }
+}
+
+.active {
+  background: #27272A;
+  color: #A1A1AA;
+}

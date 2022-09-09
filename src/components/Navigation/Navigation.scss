@@ -1,0 +1,19 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+
+  & .navigation-link {
+    color: #fff;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  & .navigation-title {
+    color: #fff;
+  }
+}
