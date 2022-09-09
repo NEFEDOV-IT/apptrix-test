@@ -22,6 +22,7 @@ const Navigation: FC = () => {
         <span>
           <Link onClick={HandleClick} className={'navigation-link'} to={'/'}>{loggedName}</Link>
           <Link className={'navigation-link'} to={'/users'}>USERS</Link>
+          <Link className={'navigation-link'} to={'/todos'}>TODOS</Link>
         </span>
       </nav>
     </div>

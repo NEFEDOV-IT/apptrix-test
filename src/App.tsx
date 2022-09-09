@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation/Navigation";
 import Footer from "./components/Footer/Footer";
 import UsersList from "./pages/UsersList/UsersList";
 import UserItemPage from "./pages/UserItemPage/UserItemPage";
+import Todos from "./pages/Todos/Todos";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/' element={<Auth/>}/>
           <Route path='/users' element={<UsersList/>}/>
           <Route path='/users/:id' element={<UserItemPage/>}/>
+          <Route path='/todos' element={<Todos/>}/>
         </Routes>
       </main>
       <footer>

@@ -9,7 +9,7 @@ const UserItemPage: FC = () => {
   const params = useParams()
 
   useEffect(() => {
-    fetch(URL.YOUTRACK + params.id + '?fields=id,login,name,email', {
+    fetch(URL.YOUTRACK.USERS + params.id + '?fields=id,login,name,email', {
       method: 'GET',
       headers: {
         'Cache-Control': 'no-cache',

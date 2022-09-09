@@ -1,6 +1,9 @@
 export const URL = {
   TOKEN: 'http://erp.apptrix.ru/api/token/',
-  YOUTRACK: 'https://demo-apptrix.myjetbrains.com/youtrack/api/admin/users/',
+  YOUTRACK: {
+    USERS: 'https://demo-apptrix.myjetbrains.com/youtrack/api/admin/users/',
+    TODOS: 'https://demo-apptrix.myjetbrains.com/youtrack/api/issues?fields=id,summary,project(name)',
+  },
   REFRESH: 'http://erp.apptrix.ru/api/token/refresh/',
 }
 

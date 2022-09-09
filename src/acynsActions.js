@@ -2,6 +2,7 @@ import {getTokenStorage, saveTokenStorage} from "./storage";
 import {logOut, register, registerFail} from "./store/auth.slice/auth.slice";
 import {TOKEN, URL} from "./utils";
 import {addUsers} from "./store/users.slice/users.slice";
+import {addTodos} from "./store/todos.slice/todos.slice";
 
 function authHeader() {
   const user = JSON.parse(getTokenStorage(TOKEN.ACCESS_TOKEN));
@@ -76,7 +77,7 @@ function refreshToken(token) {
 
 export const fetchUsers = () => {
   return dispatch => {
-    fetch(URL.YOUTRACK + '?fields=id,login,name,email', {
+    fetch(URL.YOUTRACK.USERS + '?fields=id,login,name,email', {
       method: 'GET',
       headers: {
         'Cache-Control': 'no-cache',
@@ -87,6 +88,42 @@ export const fetchUsers = () => {
       .then(response => response.json())
       .then(response => {
         dispatch(addUsers(response))
+      })
+      .catch(e => console.log(e.message))
+  }
+}
+
+export const fetchTodos = () => {
+  return dispatch => {
+    fetch(URL.YOUTRACK.TODOS, {
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${TOKEN.YOUTRACK}`
+      },
+    })
+      .then(response => response.json())
+      .then(response => {
+        dispatch(addTodos(response))
+      })
+      .catch(e => console.log(e.message))
+  }
+}
+
+export const fetchTodosWithParams = (value) => {
+  return dispatch => {
+    fetch(URL.YOUTRACK.TODOS + `&query=project:+%7B${value}%7D`, {
+      method: 'GET',
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${TOKEN.YOUTRACK}`
+      },
+    })
+      .then(response => response.json())
+      .then(response => {
+        dispatch(addTodos(response))
       })
       .catch(e => console.log(e.message))
   }

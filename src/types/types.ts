@@ -11,3 +11,15 @@ export interface ILogged {
     isLogged: boolean;
   }
 }
+
+export interface Project {
+  $type: string;
+  name: string;
+}
+
+export interface ITodos {
+  summary: string;
+  project: Project;
+  id: string;
+  $type: string;
+}
