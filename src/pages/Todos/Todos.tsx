@@ -14,13 +14,17 @@ const Todos: FC = () => {
   const [value, setValue] = useState<string>('')
   const [isOpen, setIsOpen] = useState<boolean>(true)
 
-  const filterTodo = todos.filter(item => {
-      return item.project.name.toLowerCase().includes(value.toLowerCase())
+  const _todos = todos.map(item => item.project.name)
+  const _filterTodo = [...new Set(_todos)]
+
+  const filterTodo = _filterTodo.filter(item => {
+      return item.toLowerCase().includes(value.toLowerCase())
     }
   )
 
   const HandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
+    if (e.target.value.length > 3) setIsOpen(!isOpen)
   }
 
   const HandleClick = (e: any) => {
@@ -29,7 +33,7 @@ const Todos: FC = () => {
   }
 
   useEffect(() => {
-     dispatch(fetchTodos())
+    dispatch(fetchTodos())
   }, [dispatch, value])
 
   return (
@@ -38,9 +42,9 @@ const Todos: FC = () => {
         <input onChange={HandleChange} value={value} type="text" placeholder={'Search...'}/>
         <ul className="autocomplete">
           {value.length > 3 && isOpen ?
-            filterTodo.map(item => {
-            return <li onClick={HandleClick} key={item.id} className={'autocomplete__item'}>{item.project.name}</li>
-          }) : null}
+            filterTodo.map((item, index) => {
+              return <li onClick={HandleClick} key={index} className={'autocomplete__item'}>{item}</li>
+            }) : null}
         </ul>
         <table className={'todos__table'}>
           <tbody>
