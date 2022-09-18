@@ -15,7 +15,7 @@ const Todos: FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
 
   const _todos = todos.map(item => item.project.name)
-  const _filterTodo = [...new Set(_todos)]
+  const _filterTodo = Array.from(new Set(_todos))
 
   const filterTodo = _filterTodo.filter(item => {
       return item.toLowerCase().includes(value.toLowerCase())
