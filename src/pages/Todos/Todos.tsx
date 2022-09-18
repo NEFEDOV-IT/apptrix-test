@@ -24,7 +24,7 @@ const Todos: FC = () => {
 
   const HandleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
-    if (e.target.value.length > 3) setIsOpen(!isOpen)
+    if (e.target.value.length > 2) setIsOpen(!isOpen)
   }
 
   const HandleClick = (e: any) => {
@@ -41,7 +41,7 @@ const Todos: FC = () => {
       <div className="todos">
         <input onChange={HandleChange} value={value} type="text" placeholder={'Search...'}/>
         <ul className="autocomplete">
-          {value.length > 3 && isOpen ?
+          {value.length > 2 && isOpen ?
             filterTodo.map((item, index) => {
               return <li onClick={HandleClick} key={index} className={'autocomplete__item'}>{item}</li>
             }) : null}
